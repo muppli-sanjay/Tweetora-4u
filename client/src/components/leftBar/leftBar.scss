@@ -1,0 +1,142 @@
+@use "../../style" as style;
+@use "sass:color";
+
+.leftBar {
+  @include style.themify(style.$themes) {
+    flex: 3;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    background-color: style.themed("bg");
+    position: sticky;
+    top: 70px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: style.themed("border");
+      border-radius: 3px;
+    }
+
+    .container {
+      padding: 20px;
+
+      hr {
+        margin: 20px 0;
+        border: none;
+        height: 1px;
+        background-color: style.themed("border");
+      }
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        > span {
+          font-size: 14px;
+          color: style.themed("textColorSoft");
+          font-weight: 500;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: style.themed("bgSoft");
+          }
+
+          span {
+            font-size: 16px;
+            font-weight: 500;
+            color: style.themed("textColor");
+          }
+        }
+
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: style.themed("bgSoft");
+          }
+
+          img {
+            width: 24px;
+            height: 24px;
+          }
+
+          span {
+            font-size: 14px;
+            color: style.themed("textColor");
+          }
+        }
+
+        .friends-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 10px;
+          padding: 10px;
+          background-color: style.themed("bgSoft");
+          border-radius: 5px;
+
+          h3 {
+            font-size: 16px;
+            color: style.themed("textColor");
+            margin-bottom: 10px;
+          }
+
+          .friend {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+
+            &:hover {
+              background-color: color.adjust(style.themed("bgSoft"), $lightness: -5%);
+            }
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
+              border: 1px solid style.themed("border");
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            span {
+              font-size: 14px;
+              color: style.themed("textColor");
+            }
+          }
+
+          .error {
+            font-size: 14px;
+            color: #d32f2f;
+            text-align: center;
+          }
+
+          p {
+            font-size: 14px;
+            color: style.themed("textColorSoft");
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

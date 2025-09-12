@@ -1,0 +1,182 @@
+.notifications {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+
+  &.theme-dark {
+    background: #333;
+    color: #fff;
+
+    .error,
+    .no-notifications,
+    .loading {
+      color: #ff6b6b;
+    }
+
+    .notification-card {
+      background: #444;
+      color: #fff;
+
+      .username {
+        color: #1e90ff;
+      }
+
+      .message {
+        color: #ccc;
+      }
+
+      .accept-btn,
+      .reject-btn {
+        color: #fff;
+      }
+
+      .accept-btn {
+        background: #1e90ff;
+      }
+
+      .reject-btn {
+        background: #ff6b6b;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .loading,
+  .error,
+  .no-notifications {
+    text-align: center;
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  .error {
+    color: #e0245e;
+  }
+
+  .notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .notification-section {
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+
+      .theme-dark & {
+        color: #fff;
+      }
+    }
+  }
+
+  .notification-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &.message-notification,
+    &.post-notification {
+      cursor: pointer;
+    }
+
+    .notification-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        font-weight: 500;
+        font-size: 14px;
+        color: #1877f2;
+
+        .theme-dark & {
+          color: #1e90ff;
+        }
+      }
+
+      .message {
+        font-size: 14px;
+        color: #555;
+
+        .theme-dark & {
+          color: #ccc;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+
+      .accept-btn,
+      .reject-btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .accept-btn {
+        background: #1877f2;
+        color: #fff;
+
+        &:hover {
+          background: #166fe5;
+        }
+
+        &:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+      }
+
+      .reject-btn {
+        background: #e0245e;
+        color: #fff;
+
+        &:hover {
+          background: #c81e50;
+        }
+
+        &:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
