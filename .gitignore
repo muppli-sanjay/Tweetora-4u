@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+client/build/
+client/dist/
+
+# Secrets and local config (never commit these)
+.env
+.env.*
+!.env.example
+
+# User uploads (the folders are created automatically by the server)
+server/Uploads/*
+server/profile_upload/*
+!server/Uploads/.gitkeep
+!server/profile_upload/.gitkeep
+
+# Logs and OS / editor files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

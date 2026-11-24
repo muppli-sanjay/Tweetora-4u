@@ -1,0 +1,241 @@
+@use "../../style" as *;
+
+.share {
+  @include themify($themes) {
+    -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    border-radius: 20px;
+    background-color: themed("bg");
+    color: themed("textColor");
+    margin: 0 auto 20px;
+    max-width: 1000px;
+
+    .container {
+      padding: 20px;
+
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .profile-img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 1px solid themed("border"); /* Ensure visibility */
+        }
+
+        .share-input { flex: 1; min-width: 0; color: themed("textColor"); }
+
+        input,
+        textarea {
+          border: none;
+          outline: none;
+          padding: 20px 10px;
+          background-color: transparent;
+          width: 60%;
+          color: themed("textColor");
+
+          &:disabled {
+            background-color: themed("bgSoft");
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .preview {
+        margin: 10px 0;
+        position: relative;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .preview-media {
+          max-width: 100%;
+          max-height: 200px;
+          object-fit: contain;
+          border-radius: 8px;
+
+          &.audio { width: 100%; max-width: 420px; height: 44px; }
+        }
+
+        .remove-media {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #a71d2a;
+          }
+        }
+      }
+
+      .location {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+          font-size: 14px;
+          color: themed("textColorSoft");
+        }
+
+        .remove-location {
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #a71d2a;
+          }
+        }
+      }
+
+      .tagged-friends {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+          font-size: 14px;
+          color: themed("textColorSoft");
+        }
+
+        .remove-tagged {
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #a71d2a;
+          }
+        }
+      }
+
+      hr {
+        margin: 20px 0px;
+        border: none;
+        height: 0.5px;
+        background-color: themed("border");
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        .left {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+
+          .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+
+            img {
+              height: 20px;
+            }
+
+            span {
+              font-size: 12px;
+              color: themed("textColorSoft");
+            }
+          }
+
+          .friends-dropdown {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: themed("bg");
+            border: 1px solid themed("border");
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 200px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+            .friend-option {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 10px;
+              cursor: pointer;
+
+              &.selected {
+                background-color: themed("bgSoft");
+              }
+
+              &:hover {
+                background-color: themed("bgSoft");
+              }
+
+              .friend-avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+
+              span {
+                font-size: 14px;
+                color: themed("textColor");
+              }
+            }
+
+            p {
+              padding: 10px;
+              font-size: 14px;
+              color: themed("textColorSoft");
+              text-align: center;
+            }
+          }
+        }
+
+        .right {
+          button {
+            border: none;
+            padding: 5px 15px;
+            color: white;
+            cursor: pointer;
+            background-color: #5271ff;
+            border-radius: 3px;
+
+            &:disabled {
+              background-color: #999;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+      .error {
+        color: #ff0000;
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+      }
+    }
+  }
+}

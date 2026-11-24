@@ -1,0 +1,53 @@
+.hashtag-input {
+  position: relative;
+  display: inline-block;
+  min-width: 0;
+
+  .mirror {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: pre;
+    pointer-events: none;
+    color: inherit;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  input,
+  textarea {
+    position: relative;
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    background: transparent !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    font: inherit;
+  }
+
+  .hashtag { font-weight: inherit; } /* keep glyph widths equal to the real field so the caret stays aligned */
+
+  input::placeholder,
+  textarea::placeholder { -webkit-text-fill-color: #8a8fb0; color: #8a8fb0; }
+
+  // multi-line: wrap long text onto new lines and grow downwards
+  &.multi {
+    .mirror {
+      display: block;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    textarea {
+      resize: none;
+      overflow: hidden;
+      min-height: 1.5em;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+  }
+}

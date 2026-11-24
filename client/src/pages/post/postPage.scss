@@ -1,0 +1,23 @@
+.post-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .back {
+    margin-bottom: 14px;
+    padding: 8px 14px;
+    border: 1.5px solid #dfe3f5;
+    border-radius: 10px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .state {
+    text-align: center;
+    padding: 30px 0;
+    color: #6b7194;
+    &.error { color: #d6264d; }
+  }
+}

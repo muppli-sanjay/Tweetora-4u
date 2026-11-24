@@ -1,0 +1,23 @@
+@use "../../style" as *;
+
+.posts {
+  @include themify($themes) {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .error {
+      color: #ff0000;
+      text-align: center;
+    }
+
+    // loading / empty messages
+    > p, .no-posts {
+      text-align: center;
+      color: themed("textColorSoft");
+    }
+  }
+}

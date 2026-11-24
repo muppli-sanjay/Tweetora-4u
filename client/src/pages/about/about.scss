@@ -1,0 +1,97 @@
+@use "../../style" as *;
+
+.about-page {
+  @include themify($themes) {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+    color: themed("textColor");
+
+    section { margin-top: 36px; }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+      text-align: center;
+      &::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        margin: 8px auto 0;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #00d4ff, #1677ff, #7b2ff7);
+      }
+    }
+
+    .hero {
+      margin-top: 0;
+      padding: 40px 24px;
+      text-align: center;
+      border-radius: 20px;
+      color: #fff;
+      background: linear-gradient(135deg, #0a0a3c, #1677ff 60%, #7b2ff7);
+
+      .hero-logo {
+        height: 90px;
+        padding: 8px 14px;
+        border-radius: 16px;
+        background: #fff;
+      }
+      h1 { margin: 16px 0 10px; font-size: 34px; }
+      .lead { max-width: 720px; margin: 0 auto 12px; font-size: 18px; line-height: 1.6; }
+      .purpose { max-width: 720px; margin: 0 auto; font-style: italic; opacity: 0.85; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      &.three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    }
+
+    .card {
+      padding: 22px;
+      text-align: center;
+      border-radius: 16px;
+      background: themed("bg");
+      border: 1px solid themed("border");
+      box-shadow: 0 6px 20px rgba(10, 10, 60, 0.08);
+
+      h3 { font-size: 22px; margin-bottom: 8px; &.accent { color: #1677ff; font-size: 28px; } }
+      .role { display: block; margin-bottom: 10px; font-size: 14px; font-weight: 600; color: #7b2ff7; }
+      p { font-size: 16px; line-height: 1.5; color: themed("textColorSoft"); }
+    }
+
+    .list {
+      list-style: none;
+      max-width: 760px;
+      margin: 0 auto;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 9px 0;
+        font-size: 17px;
+        color: themed("textColorSoft");
+        svg { flex-shrink: 0; }
+        .ok { color: #27ae60; }
+        .star { color: #f5a623; }
+      }
+    }
+
+    .links {
+      list-style: none;
+      li { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 0; }
+      a { color: themed("textColorSoft"); text-decoration: none; font-size: 16px; &:hover { color: #1677ff; } }
+      .ig { color: #e4405f; }
+      .mail { color: #3498db; }
+      .in { color: #0077b5; }
+    }
+
+    @include mobile {
+      padding: 14px 10px 30px;
+      .hero h1 { font-size: 26px; }
+    }
+  }
+}

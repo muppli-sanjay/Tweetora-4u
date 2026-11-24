@@ -1,0 +1,68 @@
+@use "sass:map";
+
+$themes: (
+  light: (
+    textColor: #000,
+    bg: white,
+    logo: darkblue,
+    bgSoft: #f6f3f3,
+    textColorSoft: #555,
+    border: lightgray
+  ),
+  dark: (
+    textColor: whitesmoke,
+    bg: #222,
+    logo: white,
+    bgSoft: #333,
+    textColorSoft: lightgray,
+    border: #444
+  )
+);
+
+$theme-map: null;
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    [data-theme="#{$theme}"] & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map.get(map.get($themes, $theme), "#{$key}");
+        $theme-map: map.merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map.get($theme-map, $key);
+}
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+
+body {
+  @include themify($themes) {
+    background-color: themed('bg');
+    color: themed('textColor');
+  }
+}
+
+// leave room for the bottom tab bar on phones
+@media (max-width: 768px) {
+  .layout-body { padding-bottom: 66px; }
+}
+
+// #hashtags are blue everywhere they are displayed or typed
+.hashtag { color: #1677ff; font-weight: 600; }
+.theme-dark .hashtag { color: #6fb0ff; }

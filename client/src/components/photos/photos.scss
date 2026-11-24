@@ -1,0 +1,29 @@
+.photos {
+  padding: 20px;
+  background-color: var(--background-color, #ffffff);
+  border-radius: 8px;
+  margin: 20px;
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--text-color, #333333);
+    margin-bottom: 15px;
+  }
+}
+
+.theme-dark {
+  .photos {
+    background-color: #333333;
+
+    h2 {
+      color: #ffffff;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .photos {
+    margin: 15px;
+    padding: 15px;
+  }
+}
