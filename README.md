@@ -28,7 +28,7 @@ Tweetora-4u is a full-stack social media web app built with the MERN stack. User
 | | |
 | :---: | :---: |
 | **Home feed**<br><img src="docs/screenshots/home-feed.png" alt="Home feed" /> | **Create a post with hashtags and tagged friends**<br><img src="docs/screenshots/create-post.png" alt="Create a post with hashtags and tagged friends" /> |
-| **Post menu: bookmark, copy link, delete (your own posts)**<br><img src="docs/screenshots/post-menu.jpeg" alt="Post menu: bookmark, copy link, delete (your own posts)" /> | **Comments**<br><img src="docs/screenshots/comments.jpeg" alt="Comments" /> |
+| **Post menu: bookmark, copy link, delete (your own posts)**<br><img src="docs/screenshots/post-menu.png" alt="Post menu: bookmark, copy link, delete (your own posts)" /> | **Comments**<br><img src="docs/screenshots/comments.jpeg" alt="Comments" /> |
 | **YouTube links play inside the post**<br><img src="docs/screenshots/youtube-embed.png" alt="YouTube links play inside the post" /> | **Audio posts**<br><img src="docs/screenshots/audio-post.jpeg" alt="Audio posts" /> |
 | **Video posts**<br><img src="docs/screenshots/video-post.png" alt="Video posts" /> | **Single post page**<br><img src="docs/screenshots/audio-post.jpeg" alt="Single post page" /> |
 
@@ -38,7 +38,7 @@ Tweetora-4u is a full-stack social media web app built with the MERN stack. User
 | :---: | :---: |
 | **Liked posts**<br><img src="docs/screenshots/liked-posts.png" alt="Liked posts" /> | **Posts you commented on**<br><img src="docs/screenshots/commented-posts.png" alt="Posts you commented on" /> |
 | **Bookmarks**<br><img src="docs/screenshots/bookmarks.png" alt="Bookmarks" /> | **Photos**<br><img src="docs/screenshots/photos.png" alt="Photos" /> |
-| **Videos**<br><img src="docs/screenshots/videos.png" alt="Videos" /> |  |
+| **Videos**<br><img src="docs/screenshots/video-post.png" alt="Videos" /> |  |
 
 ### Profile
 
