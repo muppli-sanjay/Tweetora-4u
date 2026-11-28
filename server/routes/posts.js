@@ -9,10 +9,10 @@ const verifyToken = require('../middleware/auth');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const { uploadDestination, saveUpload, removeUpload } = require('../utils/storage');
 
-// Ensure Uploads directory exists
-const uploadDir = path.join(__dirname, '../Uploads');
-fs.mkdirSync(uploadDir, { recursive: true });
+// Local Uploads folder, or a temp folder when files are stored on Cloudflare R2
+const uploadDir = uploadDestination('Uploads');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -26,6 +26,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50 MB per file (keeps memory use low on small hosts like Render Free)
   fileFilter: (req, file, cb) => {
     if (!file) {
       return cb(null, false);
@@ -109,7 +110,7 @@ router.post('/', verifyToken, upload.single('image'), async (req, res) => {
     };
 
     if (req.file) {
-      postData.image = `/Uploads/${req.file.filename}`;
+      postData.image = await saveUpload(req.file, 'Uploads');
     }
 
     // Create and save post
@@ -349,9 +350,7 @@ router.delete('/:postId', verifyToken, async (req, res) => {
     ]);
 
     // remove the uploaded media file as well (best effort)
-    if (post.image && post.image.startsWith('/Uploads/')) {
-      fs.unlink(path.join(uploadDir, path.basename(post.image)), () => {});
-    }
+    await removeUpload(post.image);
     res.json({ message: 'Post deleted', postId });
   } catch (err) {
     return sendError(res, err, 'posts');

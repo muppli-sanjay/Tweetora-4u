@@ -5,16 +5,14 @@ const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
+const { uploadDestination, saveUpload, removeUpload } = require('../utils/storage');
 const User = require('../models/User');
 const Message = require('../models/Message');
 const Notification = require('../models/Notification');
 const router = express.Router();
 
-// Ensure upload directories exist
-const uploadDir = path.join(__dirname, '../Uploads');
-const profileUploadDir = path.join(__dirname, '../profile_upload');
-fs.mkdirSync(uploadDir, { recursive: true });
-fs.mkdirSync(profileUploadDir, { recursive: true });
+// Local profile_upload folder, or a temp folder when files are stored on Cloudflare R2
+const profileUploadDir = uploadDestination('profile_upload');
 
 // Configure multer for profile picture uploads
 const storage = multer.diskStorage({
@@ -218,7 +216,7 @@ router.put('/:id', verifyToken, upload.single('profilePicture'), async (req, res
 
     if (req.file) {
       // Ensure consistent path format
-      updateData.profilePicture = `/profile_upload/${req.file.filename}`;
+      updateData.profilePicture = await saveUpload(req.file, 'profile_upload');
     }
 
     const previous = req.file ? await User.findById(id).select('profilePicture').lean() : null;
@@ -230,9 +228,7 @@ router.put('/:id', verifyToken, upload.single('profilePicture'), async (req, res
 
     // the old profile picture is no longer used, so delete it
     const old = previous && previous.profilePicture;
-    if (old && old.startsWith('/profile_upload/') && old !== updateData.profilePicture) {
-      fs.unlink(path.join(profileUploadDir, path.basename(old)), () => {});
-    }
+    if (old && old !== updateData.profilePicture) await removeUpload(old);
 
     res.status(200).json(user);
   } catch (err) {

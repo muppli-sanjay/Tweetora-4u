@@ -12,6 +12,7 @@ const postRoutes = require('./routes/posts');
 const messageRoutes = require('./routes/messages');
 const searchRoutes = require('./routes/search');
 const notificationsRoutes = require('./routes/notifications');
+const presignMedia = require('./middleware/presignMedia');
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(presignMedia); // turns stored B2 file paths into temporary signed URLs in API responses
 
 const connectWithRetry = () => {
   mongoose.set('strictQuery', true);

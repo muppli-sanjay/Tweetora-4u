@@ -133,6 +133,7 @@ The side menu becomes a scrollable bottom tab bar.
 | Backend | Node.js, Express |
 | Database | MongoDB with Mongoose |
 | Auth and uploads | JSON Web Tokens, bcrypt, Multer |
+| File storage | Local folders in development, Backblaze B2 in production |
 
 ## Project structure
 
@@ -158,6 +159,7 @@ Tweetora-4u/
     ├── routes/              auth, users, posts, notifications, messages, search
     ├── scripts/             cleanupUploads.js (manual unused-file cleanup)
     ├── utils/               errors.js (friendly error messages),
+    │                        storage.js (local folders or Backblaze B2),
     │                        uploadCleanup.js (removes unused uploads)
     ├── Uploads/             post media (created automatically, not committed)
     ├── profile_upload/      profile pictures (created automatically, not committed)
@@ -203,15 +205,34 @@ Open http://localhost:3000, create an account and start posting.
 | `server/.env` | `MONGO_URI` | MongoDB connection string |
 | `server/.env` | `PORT` | API port (default 5000) |
 | `server/.env` | `CLIENT_URL` | allowed frontend origin for CORS |
+| `server/.env` | `B2_KEY_ID`, `B2_APPLICATION_KEY`, `B2_BUCKET`, `B2_ENDPOINT` | Backblaze B2 storage for uploads. Leave blank to store files in the local `Uploads/` folders |
 | `server/.env` | `AUTO_CLEANUP` | set to `false` to turn off the automatic deletion of unused uploads (default: on) |
 | `server/.env` | `CLEANUP_INTERVAL_HOURS` | how often the cleanup runs (default: 24) |
 | `client/.env` | `VITE_SERVER_URL` | API address if it is not `http://localhost:5000` (optional) |
+
+## File storage (Backblaze B2)
+
+By default, uploads are saved in `server/Uploads/` and `server/profile_upload/`. That is fine locally, but hosts such as Render wipe the disk on every restart or redeploy, so for production store uploads in Backblaze B2:
+
+1. Create a [Backblaze](https://www.backblaze.com/cloud-storage) account and, under **Buckets**, create a bucket with **Files in Bucket are: Private**. The bucket never has to be public.
+2. On the bucket page, copy the **Endpoint** (for example `s3.us-west-004.backblazeb2.com`).
+3. Go to **Application Keys** and create a key limited to that bucket. Copy the **keyID** and the **applicationKey** (it is shown only once).
+4. Add these to the server's environment variables:
+
+```
+B2_KEY_ID=your keyID
+B2_APPLICATION_KEY=your applicationKey
+B2_BUCKET=your-bucket-name
+B2_ENDPOINT=https://s3.us-west-004.backblazeb2.com
+```
+
+The database stores a path such as `/media/Uploads/123.png`, and the server swaps it for a temporary signed B2 URL (valid for at least 2 days, and the same all day so browsers can cache it) in every API response. The browser downloads files directly from B2, and your B2 keys never leave the server. Post files are limited to 50 MB. Use a bucket that only Tweetora uses, because the cleanup below deletes files in it that no post or profile refers to. When a file is deleted, every stored version of it is removed, so the space is freed.
 
 ## Storage cleanup
 
 Uploaded files are cleaned up automatically so they don't fill the disk:
 
-- When you replace your profile picture, the old one is deleted.
+- When you replace your profile picture, the old one is deleted (from the local folder or from B2).
 - When you delete a post, its image, video or audio is deleted.
 - About a minute after the server starts, and then every 24 hours, the server deletes any file in `Uploads/` and `profile_upload/` that no post or profile uses. Files uploaded in the last 10 minutes are never touched.
 
