@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const dotenv = require('dotenv');
 const { sendError } = require('./utils/errors');
+const { startAutoCleanup } = require('./utils/uploadCleanup');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
@@ -34,10 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 const connectWithRetry = () => {
   mongoose.set('strictQuery', true);
   mongoose
-    .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/Social_media', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000
+    .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tweetora-4u', {
+      serverSelectionTimeoutMS: 10000
     })
     .then(() => console.log('MongoDB Connected'))
     .catch(err => {
@@ -45,6 +44,7 @@ const connectWithRetry = () => {
       setTimeout(connectWithRetry, 5000);
     });
 };
+
 
 connectWithRetry();
 
@@ -77,6 +77,11 @@ app.use('/api/notifications', notificationsRoutes);
 app.use((err, req, res, next) => {
   sendError(res, err, 'Unhandled');
 });
+
+// Automatically delete uploads that no post or profile uses (set AUTO_CLEANUP=false to turn off)
+if (process.env.AUTO_CLEANUP !== 'false') {
+  startAutoCleanup({ intervalHours: Number(process.env.CLEANUP_INTERVAL_HOURS) || 24 });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -19,58 +19,98 @@ Tweetora-4u is a full-stack social media web app built with the MERN stack. User
 
 ### Getting in
 
-| | |
-| :---: | :---: |
-| **Log in**<br><img src="docs/screenshots/login.png" alt="Log in" /> | **Create an account**<br><img src="docs/screenshots/register.png" alt="Create an account" /> |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/login.jpeg" alt="Log in" width="100%" /><br /><sub><b>Log in</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/register.jpeg" alt="Create an account" width="100%" /><br /><sub><b>Create an account</b></sub></td>
+  </tr>
+</table>
 
 ### Feed and posts
 
-| | |
-| :---: | :---: |
-| **Home feed**<br><img src="docs/screenshots/home-feed.png" alt="Home feed" /> | **Create a post with hashtags and tagged friends**<br><img src="docs/screenshots/create-post.png" alt="Create a post with hashtags and tagged friends" /> |
-| **Post menu: bookmark, copy link, delete (your own posts)**<br><img src="docs/screenshots/post-menu.png" alt="Post menu: bookmark, copy link, delete (your own posts)" /> | **Comments**<br><img src="docs/screenshots/comments.jpeg" alt="Comments" /> |
-| **YouTube links play inside the post**<br><img src="docs/screenshots/youtube-embed.png" alt="YouTube links play inside the post" /> | **Audio posts**<br><img src="docs/screenshots/audio-post.jpeg" alt="Audio posts" /> |
-| **Video posts**<br><img src="docs/screenshots/video-post.png" alt="Video posts" /> | **Single post page**<br><img src="docs/screenshots/audio-post.jpeg" alt="Single post page" /> |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/home-feed.jpeg" alt="Home feed" width="100%" /><br /><sub><b>Home feed</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/create-post.jpeg" alt="Create a post with hashtags and tagged friends" width="100%" /><br /><sub><b>Create a post with hashtags and tagged friends</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/post-menu.jpeg" alt="Post menu: bookmark, copy link, delete" width="100%" /><br /><sub><b>Post menu: bookmark, copy link, delete</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/comments.jpeg" alt="Comments" width="100%" /><br /><sub><b>Comments</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/youtube-embed.jpeg" alt="YouTube links play inside the post" width="100%" /><br /><sub><b>YouTube links play inside the post</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/audio-post.jpeg" alt="Audio posts" width="100%" /><br /><sub><b>Audio posts</b></sub></td>
+  </tr>
+</table>
 
-### Your activity
+### Media and activity
 
-| | |
-| :---: | :---: |
-| **Liked posts**<br><img src="docs/screenshots/liked-posts.png" alt="Liked posts" /> | **Posts you commented on**<br><img src="docs/screenshots/commented-posts.png" alt="Posts you commented on" /> |
-| **Bookmarks**<br><img src="docs/screenshots/bookmarks.png" alt="Bookmarks" /> | **Photos**<br><img src="docs/screenshots/photos.png" alt="Photos" /> |
-| **Videos**<br><img src="docs/screenshots/video-post.png" alt="Videos" /> |  |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/video-post.jpeg" alt="Video posts" width="100%" /><br /><sub><b>Video posts</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/photos.jpeg" alt="Photos" width="100%" /><br /><sub><b>Photos</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/liked-posts.jpeg" alt="Liked posts" width="100%" /><br /><sub><b>Liked posts</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/commented-posts.jpeg" alt="Posts you commented on" width="100%" /><br /><sub><b>Posts you commented on</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/bookmarks.jpeg" alt="Bookmarks" width="100%" /><br /><sub><b>Bookmarks</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/search.jpeg" alt="Search" width="100%" /><br /><sub><b>Search</b></sub></td>
+  </tr>
+</table>
 
 ### Profile
 
-| | |
-| :---: | :---: |
-| **Profile**<br><img src="docs/screenshots/profile.png" alt="Profile" /> | **Tagged posts**<br><img src="docs/screenshots/profile-tagged.png" alt="Tagged posts" /> |
-| **Friends tab**<br><img src="docs/screenshots/profile-friends.png" alt="Friends tab" /> | **Edit profile**<br><img src="docs/screenshots/edit-profile.png" alt="Edit profile" /> |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/profile.jpeg" alt="Profile" width="100%" /><br /><sub><b>Profile</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/profile-tagged.jpeg" alt="Tagged posts" width="100%" /><br /><sub><b>Tagged posts</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/profile-friends.jpeg" alt="Friends tab" width="100%" /><br /><sub><b>Friends tab</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/edit-profile.jpeg" alt="Edit profile" width="100%" /><br /><sub><b>Edit profile</b></sub></td>
+  </tr>
+</table>
 
 ### Friends, chat and notifications
 
-| | |
-| :---: | :---: |
-| **Friends**<br><img src="docs/screenshots/friends.png" alt="Friends" /> | **Add friends**<br><img src="docs/screenshots/add-friends.png" alt="Add friends" /> |
-| **Search**<br><img src="docs/screenshots/search.png" alt="Search" /> | **Messages**<br><img src="docs/screenshots/messages.png" alt="Messages" /> |
-| **Notifications**<br><img src="docs/screenshots/notifications.png" alt="Notifications" /> | **About page**<br><img src="docs/screenshots/about.png" alt="About page" /> |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/friends.jpeg" alt="Friends" width="100%" /><br /><sub><b>Friends</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/add-friends.jpeg" alt="Add friends" width="100%" /><br /><sub><b>Add friends</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/messages.jpeg" alt="Messages" width="100%" /><br /><sub><b>Messages</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/notifications.jpeg" alt="Notifications" width="100%" /><br /><sub><b>Notifications</b></sub></td>
+  </tr>
+</table>
 
-### Dark mode and mobile
+### About and dark mode
 
-| | |
-| :---: | :---: |
-| **Dark mode**<br><img src="docs/screenshots/dark-home.png" alt="Dark mode" /> | **Dark mode notifications**<br><img src="docs/screenshots/dark-notifications.png" alt="Dark mode notifications" /> |
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/about.jpeg" alt="About page" width="100%" /><br /><sub><b>About page</b></sub></td>
+    <td width="50%" align="center"><img src="docs/screenshots/dark-home.jpeg" alt="Dark mode" width="100%" /><br /><sub><b>Dark mode</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/dark-notifications.jpeg" alt="Dark mode notifications" width="100%" /><br /><sub><b>Dark mode notifications</b></sub></td>
+    <td width="50%"></td>
+  </tr>
+</table>
 
 ### On a phone
 
 The side menu becomes a scrollable bottom tab bar.
 
-<p>
-  <img src="docs/screenshots/mobile-home.jpeg" width="190" alt="mobile-home" />
-  <img src="docs/screenshots/mobile-profile.jpeg" width="190" alt="mobile-profile" />
-  <img src="docs/screenshots/mobile-message.jpeg" width="190" alt="mobile-messages" />
-  <img src="docs/screenshots/mobile-bookmarks.jpeg" width="190" alt="mobile-bookmarks" />
-</p>
+<table>
+  <tr>
+    <td width="25%" align="center"><img src="docs/screenshots/mobile-home.jpeg" alt="Home" width="100%" /><br /><sub><b>Home</b></sub></td>
+    <td width="25%" align="center"><img src="docs/screenshots/mobile-profile.jpeg" alt="Profile" width="100%" /><br /><sub><b>Profile</b></sub></td>
+    <td width="25%" align="center"><img src="docs/screenshots/mobile-messages.jpeg" alt="Messages" width="100%" /><br /><sub><b>Messages</b></sub></td>
+    <td width="25%" align="center"><img src="docs/screenshots/mobile-bookmarks.jpeg" alt="Bookmarks" width="100%" /><br /><sub><b>Bookmarks</b></sub></td>
+  </tr>
+</table>
 
 ## Features
 
@@ -82,6 +122,7 @@ The side menu becomes a scrollable bottom tab bar.
 - **Notifications:** alerts for likes, comments, friend requests and accepted requests, with an unread badge
 - **Messaging:** one-to-one chat between friends
 - **Profile:** edit your name, username, bio, date of birth and photo; see your posts, tagged posts and friends
+- **Storage cleanup:** a replaced profile picture or a deleted post's media is removed from disk right away, and a daily sweep deletes any leftover unused files
 - **UI:** light and dark mode, responsive layout with a bottom tab bar on phones
 
 ## Tech stack
@@ -98,12 +139,14 @@ The side menu becomes a scrollable bottom tab bar.
 ```
 Tweetora-4u/
 ├── client/                  React + Vite frontend (http://localhost:3000)
-│   ├── public/
+│   ├── index.html           app entry page
+│   ├── vite.config.js       dev server on port 3000
+│   ├── public/assets/       default avatar and favicon
 │   └── src/
 │       ├── api/             shared Axios instance and error helpers
 │       ├── assets/          logos and icons
 │       ├── components/      navbar, leftBar, post, posts, share, hashtag, notifications,
-│       │                    messages, friends, addFrnds, photos, videos, groups
+│       │                    messages, friends, addFrnds, photos, videos
 │       ├── context/         authContext, darkModeContext
 │       ├── pages/           login, register, home, profile, post, about, collection
 │       ├── utils/           hashtag and YouTube link helpers
@@ -111,9 +154,11 @@ Tweetora-4u/
 │       └── main.jsx
 └── server/                  Express API (http://localhost:5000)
     ├── middleware/          auth.js (JWT verification)
-    ├── models/              User, Post, Comment, Notification, Message, RefreshToken
-    ├── routes/              auth, users, posts, notifications, messages, search, refresh
-    ├── utils/               errors.js (friendly error messages)
+    ├── models/              User, Post, Comment, Notification, Message
+    ├── routes/              auth, users, posts, notifications, messages, search
+    ├── scripts/             cleanupUploads.js (manual unused-file cleanup)
+    ├── utils/               errors.js (friendly error messages),
+    │                        uploadCleanup.js (removes unused uploads)
     ├── Uploads/             post media (created automatically, not committed)
     ├── profile_upload/      profile pictures (created automatically, not committed)
     └── index.js
@@ -126,7 +171,7 @@ Tweetora-4u/
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/Mupplisanjay/Tweetora-4u.git
+git clone https://github.com/muppli-sanjay/Tweetora-4u.git
 cd Tweetora-4u
 ```
 
@@ -145,7 +190,7 @@ npm start
 ```bash
 cd client
 npm install
-npm run dev
+npm run dev              # optional: copy .env.example to .env only if your server is not on port 5000
 ```
 
 Open http://localhost:3000, create an account and start posting.
@@ -158,4 +203,30 @@ Open http://localhost:3000, create an account and start posting.
 | `server/.env` | `MONGO_URI` | MongoDB connection string |
 | `server/.env` | `PORT` | API port (default 5000) |
 | `server/.env` | `CLIENT_URL` | allowed frontend origin for CORS |
-| `client/.env` | `VITE_SERVER_URL` | API address if it is not `http://localhost:5000` |
+| `server/.env` | `AUTO_CLEANUP` | set to `false` to turn off the automatic deletion of unused uploads (default: on) |
+| `server/.env` | `CLEANUP_INTERVAL_HOURS` | how often the cleanup runs (default: 24) |
+| `client/.env` | `VITE_SERVER_URL` | API address if it is not `http://localhost:5000` (optional) |
+
+## Storage cleanup
+
+Uploaded files are cleaned up automatically so they don't fill the disk:
+
+- When you replace your profile picture, the old one is deleted.
+- When you delete a post, its image, video or audio is deleted.
+- About a minute after the server starts, and then every 24 hours, the server deletes any file in `Uploads/` and `profile_upload/` that no post or profile uses. Files uploaded in the last 10 minutes are never touched.
+
+Deletion is permanent. Make sure `MONGO_URI` points at the right database, because with a wrong or empty database every file would look unused. Keep backups of the upload folders if the media matters to you.
+
+You can also run the cleanup by hand:
+
+```bash
+cd server
+npm run cleanup              # only list the unused files
+npm run cleanup -- --delete  # delete them
+```
+
+Set `AUTO_CLEANUP=false` in `server/.env` to turn off the automatic cleanup.
+
+## License
+
+This project is released under the [MIT License](LICENSE).
