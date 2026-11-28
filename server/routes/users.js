@@ -124,34 +124,34 @@ router.get('/random', verifyToken, async (req, res) => {
 router.get('/:id', verifyToken, async (req, res) => {
   try {
     let { id } = req.params;
-    
+
     // Handle "me" parameter
     if (id === 'me') {
       id = req.userId;
     }
-    
+
     // Validate the ID format
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       console.error('Users: Invalid or missing user ID:', id);
       return res.status(400).json({ message: 'Invalid or missing user ID' });
     }
-    
+
     // Convert to ObjectId for MongoDB query
     const objectId = new mongoose.Types.ObjectId(id);
-    
+
     // Query the database
     const user = await User.findById(objectId)
       .select('-password')
       .populate('friends', '_id username name profilePicture')
       .populate('friendRequests.senderId', '_id username name profilePicture')
       .lean();
-    
+
     // Check if user exists
     if (!user) {
       console.error('Users: User not found:', id);
       return res.status(404).json({ message: 'User not found' });
     }
-    
+
     // Process the user data for response
     const userData = {
       _id: user._id.toString(),
@@ -167,7 +167,7 @@ router.get('/:id', verifyToken, async (req, res) => {
       userData.email = user.email || '';
       userData.friendRequests = Array.isArray(user.friendRequests) ? user.friendRequests : [];
     }
-    
+
     res.status(200).json(userData);
   } catch (err) {
     console.error('Users: Error fetching user by ID:', {
@@ -181,8 +181,11 @@ router.get('/:id', verifyToken, async (req, res) => {
 // Update user profile
 router.put('/:id', verifyToken, upload.single('profilePicture'), async (req, res) => {
   try {
-
     const { id } = req.params;
+    // if the update fails, don't keep the freshly uploaded picture on disk
+    res.on('finish', () => {
+      if (req.file && res.statusCode >= 400) fs.unlink(req.file.path, () => {});
+    });
     if (id !== req.userId) {
       console.error('Users: Unauthorized update attempt:', { userId: req.userId, targetId: id });
       return res.status(403).json({ message: 'Unauthorized: You can only update your own profile' });
@@ -218,10 +221,17 @@ router.put('/:id', verifyToken, upload.single('profilePicture'), async (req, res
       updateData.profilePicture = `/profile_upload/${req.file.filename}`;
     }
 
+    const previous = req.file ? await User.findById(id).select('profilePicture').lean() : null;
     const user = await User.findByIdAndUpdate(id, updateData, { new: true, runValidators: true }).select('-password');
     if (!user) {
       console.error('Users: User not found:', id);
       return res.status(404).json({ message: 'User not found' });
+    }
+
+    // the old profile picture is no longer used, so delete it
+    const old = previous && previous.profilePicture;
+    if (old && old.startsWith('/profile_upload/') && old !== updateData.profilePicture) {
+      fs.unlink(path.join(profileUploadDir, path.basename(old)), () => {});
     }
 
     res.status(200).json(user);
@@ -469,7 +479,7 @@ router.post('/messages', verifyToken, async (req, res) => {
       .populate('recipientId', '_id username name profilePicture')
       .lean();
 
-    res.status(200).json({ message: 'Message sent successfully', message: populatedMessage });
+    res.status(200).json({ message: populatedMessage });
   } catch (err) {
     console.error('Users: Error sending message:', err.message);
     return sendError(res, err, 'users');

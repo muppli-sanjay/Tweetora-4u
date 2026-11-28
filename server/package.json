@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "cleanup": "node scripts/cleanupUploads.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

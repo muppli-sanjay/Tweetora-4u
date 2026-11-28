@@ -60,6 +60,10 @@ const handleMulterError = (err, req, res, next) => {
 // POST /api/posts - Create a new post
 router.post('/', verifyToken, upload.single('image'), async (req, res) => {
   try {
+    // if the post is rejected, don't keep the uploaded file on disk
+    res.on('finish', () => {
+      if (req.file && res.statusCode >= 400) fs.unlink(req.file.path, () => {});
+    });
     const { userId, name, profilePicture, description, location, taggedFriends } = req.body;
 
     // Validate userId
@@ -114,7 +118,7 @@ router.post('/', verifyToken, upload.single('image'), async (req, res) => {
 
     // Return the post without population for faster response
     res.status(201).json(post);
-    
+
   } catch (err) {
     console.error('Posts Route: Error creating post:', err.message, err.stack);
     if (err.code === 'LIMIT_FILE_SIZE') {
@@ -130,7 +134,6 @@ const withCounts = (post) => ({
   commentsCount: post.comments ? post.comments.length : 0,
   likedBy: (post.likes || []).map((u) => String(u._id || u)),
 });
-
 
 const User = require('../models/User');
 
@@ -251,7 +254,6 @@ router.get('/user/:userId', verifyToken, async (req, res) => {
 // GET /api/posts - Fetch all posts
 router.get('/', verifyToken, async (req, res) => {
   try {
-    
     // Fetch all posts with proper validation
     const posts = await Post.find()
       .sort({ createdAt: -1 })
@@ -263,22 +265,22 @@ router.get('/', verifyToken, async (req, res) => {
         populate: { path: 'userId', select: 'username name profilePicture' },
       })
       .lean();
-      
+
     // Filter out any posts with invalid references after fetching
     const validPosts = posts.filter(post => {
       // Check if userId is valid
       const validUserId = post.userId && mongoose.Types.ObjectId.isValid(post.userId._id || post.userId);
-      
+
       // Check if all taggedFriends are valid
-      const validTaggedFriends = !post.taggedFriends || 
-        (Array.isArray(post.taggedFriends) && 
-         post.taggedFriends.every(friend => 
+      const validTaggedFriends = !post.taggedFriends ||
+        (Array.isArray(post.taggedFriends) &&
+         post.taggedFriends.every(friend =>
            friend && mongoose.Types.ObjectId.isValid(friend._id || friend)
          ));
-      
+
       return validUserId && validTaggedFriends;
     });
-    
+
     // Add likesCount, commentsCount and likedBy to each post
     const postsWithCounts = await decorate(validPosts, req.userId);
 
